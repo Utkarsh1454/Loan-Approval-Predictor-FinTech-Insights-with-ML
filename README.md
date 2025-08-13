@@ -73,3 +73,14 @@ Use machine learning to classify loan applications into:
    ```bash
    pip install pandas numpy matplotlib seaborn scikit-learn
    ```
+
+📈 Real-Life Applications
+
+*Banking loan departments
+
+*Credit risk analysis
+
+*Automated loan approval systems
+
+Author: Utkarsh Pandey
+Category: Machine Learning | FinTech | Binary Classification
