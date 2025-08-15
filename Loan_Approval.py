@@ -30,16 +30,30 @@ le_self_emp = LabelEncoder()
 df_clean['Education'] = le_edu.fit_transform(df_clean['Education'])
 df_clean['SelfEmployed'] = le_self_emp.fit_transform(df_clean['SelfEmployed'])
 
-# Step 3: Exploratory Data Analysis
+# Step 3: Exploratory Data Analysis (EDA)
+
+# a) Class Distribution
 print("\n--- Class Distribution ---")
 print(df_clean['LoanApproved'].value_counts())
+sns.countplot(x='LoanApproved', data=df_clean)
+plt.title('Loan Approval Distribution')
+plt.xlabel('Loan Approved (1 = Yes, 0 = No)')
+plt.ylabel('Number of Applicants')
+plt.show()
 
+# b) Correlation Heatmap
 print("\n--- Correlation Matrix ---")
 print(df_clean.corr())
-
 sns.heatmap(df_clean.corr(), annot=True, cmap='coolwarm')
 plt.title('Feature Correlation Heatmap')
 plt.show()
+
+# c) Distribution of Numeric Features
+num_cols = ['ApplicantIncome', 'LoanAmount', 'CreditScore']
+df_clean[num_cols].hist(bins=20, figsize=(8, 6))
+plt.suptitle('Distribution of Numeric Features')
+plt.show()
+
 
 # Step 4: Feature and Target Selection
 X = df_clean[['ApplicantIncome', 'LoanAmount', 'CreditScore', 'Education', 'SelfEmployed']]
@@ -68,6 +82,8 @@ dt_report = classification_report(y_test, dt_preds)
 print("\n--- Decision Tree Report ---")
 print("Accuracy:", dt_acc)
 print(dt_report)
+
+
 
 # Step 7: Final Comparison Report
 print("\n--- Final Model Comparison ---")
